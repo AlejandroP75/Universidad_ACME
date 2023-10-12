@@ -143,8 +143,78 @@ function pushEstudiante(){
 }
 
 function inscribirEstudiante(){
-    console.log(cursos);
-    console.log(estudiantes);
+    while(espacio.firstChild){
+        espacio.removeChild(espacio.firstChild);
+    }
+
+    let contenedor = document.createElement("div");
+    let titulo = document.createElement("h1");
+    let labelEst = document.createElement("label");
+    let listaEst = document.createElement("select");
+    let labelCur = document.createElement("label");
+    let listaCur = document.createElement("select");
+    let labelDias = document.createElement("label");
+    let dias = document.createElement("select");
+    let lunes = document.createElement("option");
+    let martes = document.createElement("option");
+    let miercoles = document.createElement("option");
+    let jueves = document.createElement("option");
+    let viernes = document.createElement("option");
+    let sabado = document.createElement("option");
+    let domingo = document.createElement("option");
+    let labelHoraInicio = document.createElement("label");
+    let horaInicio = document.createElement("input");
+    let labelHoraFin = document.createElement("label");
+    let horaFin = document.createElement("input");
+
+
+    labelEst.textContent = "Seleccione el estudiante";
+    labelCur.textContent = "Seleccione el curso";
+    labelDias.textContent = "Seleccione el día";
+    titulo.textContent = "Inscribir estudiante a un curso";
+    lunes.textContent = "Lunes";
+    martes.textContent = "Martes";
+    miercoles.textContent = "Miercoles";
+    jueves.textContent = "Jueves";
+    viernes.textContent = "Viernes";
+    sabado.textContent = "Sabado";
+    domingo.textContent = "Domingo";
+    labelHoraInicio.textContent = "Ingrese la hora de inicio en el siguiente formato (hora:minutos)";
+    labelHoraFin.textContent = "Ingrese la hora de fin en el siguiente formato (hora:minutos)";
+
+    for(let i = 0; i < estudiantes.length; i++){
+        let opEs = document.createElement("option");
+        opEs.setAttribute("value", "est" + i);
+        opEs.textContent = estudiantes[i].nombre;
+        listaEst.appendChild(opEs);
+    }
+    for(let i = 0; i < cursos.length; i++){
+        let opCu = document.createElement("option");
+        opCu.setAttribute("value", "cur" + i);
+        opCu.textContent = estudiantes[i].nombre;
+        listaCur.appendChild(opCu);
+    }
+
+    dias.appendChild(lunes);
+    dias.appendChild(martes);
+    dias.appendChild(miercoles);
+    dias.appendChild(jueves);
+    dias.appendChild(viernes);
+    dias.appendChild(sabado);
+    dias.appendChild(domingo);
+
+    contenedor.appendChild(titulo);
+    contenedor.appendChild(labelEst);
+    contenedor.appendChild(listaEst);
+    contenedor.appendChild(labelCur);
+    contenedor.appendChild(listaCur);
+    contenedor.appendChild(labelDias);
+    contenedor.appendChild(dias);
+    contenedor.appendChild(labelHoraInicio);
+    contenedor.appendChild(horaInicio);
+    contenedor.appendChild(labelHoraFin);
+    contenedor.appendChild(horaFin);
+    espacio.appendChild(contenedor);
 }
 
 function horarioCurso(){
