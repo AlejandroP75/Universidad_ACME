@@ -1,0 +1,82 @@
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  /* Estilos para el título principal */
+  h1 {
+    color: #333;
+  }
+  
+  /* Estilos para los botones */
+  button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para los contenedores */
+  div {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  
+  /* Estilos para las etiquetas y campos de entrada */
+  label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para los títulos secundarios */
+  h2 {
+    color: #333;
+  }
+  
+  /* Estilos para los párrafos en la sección de horario */
+  p {
+    margin: 10px 0;
+  }
+  
+  /* Estilos para el espacio en blanco */
+  #espacio {
+    padding: 20px;
+  }
+
+  .titulo-principal {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para los botones con la clase "boton-crear" */
+  .boton-crear {
+    background-color: #ff5733;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+  }
