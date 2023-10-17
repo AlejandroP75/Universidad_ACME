@@ -2,6 +2,7 @@ let espacio = document.getElementById("espacio");
 
 let cursos = [];
 let estudiantes = [];
+let horarios = [];
 
 class curso {
     constructor(codigo, nombre, especialidad, duracion, creditos){
@@ -29,6 +30,22 @@ class estudiante {
 
     }
     modificarEstudiante(){
+
+    }
+}
+
+class horario {
+    constructor(codigo_cur, codigo_est, dia, horaInicio, horaFin){
+        this.codigo_cur = codigo_cur;
+        this.codigo_est = codigo_est;
+        this.dia = dia;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+    }
+    eliminarClase(){
+
+    }
+    modificarClase(){
 
     }
 }
@@ -151,10 +168,13 @@ function inscribirEstudiante(){
     let titulo = document.createElement("h1");
     let labelEst = document.createElement("label");
     let listaEst = document.createElement("select");
+    listaEst.setAttribute("id", "estudianteIns");
     let labelCur = document.createElement("label");
     let listaCur = document.createElement("select");
+    listaCur.setAttribute("id", "cursoIns");
     let labelDias = document.createElement("label");
     let dias = document.createElement("select");
+    dias.setAttribute("id", "diaIns");
     let lunes = document.createElement("option");
     let martes = document.createElement("option");
     let miercoles = document.createElement("option");
@@ -164,9 +184,12 @@ function inscribirEstudiante(){
     let domingo = document.createElement("option");
     let labelHoraInicio = document.createElement("label");
     let horaInicio = document.createElement("input");
+    horaInicio.setAttribute("id", "horaInicioIns");
     let labelHoraFin = document.createElement("label");
     let horaFin = document.createElement("input");
-
+    horaFin.setAttribute("id", "horaFinIns");
+    let botonInscribir = document.createElement("button");
+    botonInscribir.setAttribute("onclick", "pushClase()");
 
     labelEst.textContent = "Seleccione el estudiante";
     labelCur.textContent = "Seleccione el curso";
@@ -181,17 +204,18 @@ function inscribirEstudiante(){
     domingo.textContent = "Domingo";
     labelHoraInicio.textContent = "Ingrese la hora de inicio en el siguiente formato (hora:minutos)";
     labelHoraFin.textContent = "Ingrese la hora de fin en el siguiente formato (hora:minutos)";
+    botonInscribir.textContent = "Inscribir";
 
     for(let i = 0; i < estudiantes.length; i++){
         let opEs = document.createElement("option");
-        opEs.setAttribute("value", "est" + i);
+        opEs.setAttribute("value", estudiantes[i].codigo);
         opEs.textContent = estudiantes[i].nombre;
         listaEst.appendChild(opEs);
     }
     for(let i = 0; i < cursos.length; i++){
         let opCu = document.createElement("option");
-        opCu.setAttribute("value", "cur" + i);
-        opCu.textContent = estudiantes[i].nombre;
+        opCu.setAttribute("value", cursos[i].codigo);
+        opCu.textContent = cursos[i].nombre;
         listaCur.appendChild(opCu);
     }
 
@@ -214,9 +238,62 @@ function inscribirEstudiante(){
     contenedor.appendChild(horaInicio);
     contenedor.appendChild(labelHoraFin);
     contenedor.appendChild(horaFin);
+    contenedor.appendChild(botonInscribir);
     espacio.appendChild(contenedor);
 }
 
+function pushClase(){
+    let estudianteIns = document.getElementById("estudianteIns");
+    let cursoIns = document.getElementById("cursoIns");
+    let diaIns = document.getElementById("diaIns");
+    let horaInicioIns = document.getElementById("horaInicioIns");
+    let horaFinIns = document.getElementById("horaFinIns");
+
+    nueIns = new horario(estudianteIns.value, cursoIns.value, diaIns.value, horaInicioIns.value, horaFinIns.value);
+    horarios.push(nueIns);
+    alert("Estudiante Inscrito");
+}
+
 function horarioCurso(){
-    console.log("This is a test");
+    while(espacio.firstChild){
+        espacio.removeChild(espacio.firstChild);
+    }
+
+    let contenedor = document.createElement("div");
+    let titulo = document.createElement("h1");
+    let labelCur = document.createElement("label");
+    let listaCur = document.createElement("select");
+    let botGenerar = document.createElement("button");
+
+    botGenerar.setAttribute("onclick", "generarHorario()");
+    listaCur.setAttribute("id", "cursoElejido");
+
+    titulo.textContent = "Generador de horarios por curso";
+    labelCur.textContent = "Seleccione el curso del que desea generar el horario: ";
+    botGenerar.textContent = "Generar";
+
+    for(let i = 0; i < cursos.length; i++){
+        let opCu = document.createElement("option");
+        opCu.setAttribute("value", cursos[i].codigo);
+        opCu.textContent = cursos[i].nombre;
+        listaCur.appendChild(opCu);
+    }
+
+    contenedor.appendChild(titulo);
+    contenedor.appendChild(labelCur);
+    contenedor.appendChild(listaCur);
+    contenedor.appendChild(botGenerar);
+    espacio.appendChild(contenedor);
+}
+
+function generarHorario(){
+    let cursoElejido = document.getElementById("cursoElejido");
+
+    for(let i = 0; i < cursos.length; i++){
+        if(cursos[i].codigo == cursoElejido.value){
+            console.log("El curso elejido fue " + cursos[i].nombre);
+        }
+    }
+
+
 }
