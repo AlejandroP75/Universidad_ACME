@@ -288,12 +288,20 @@ function horarioCurso(){
 
 function generarHorario(){
     let cursoElejido = document.getElementById("cursoElejido");
+    let contenedor = document.createElement("div");
 
+    while(espacio.firstChild){
+        espacio.removeChild(espacio.firstChild);
+    }
+    
     for(let i = 0; i < cursos.length; i++){
         if(cursos[i].codigo == cursoElejido.value){
-            console.log("El curso elejido fue " + cursos[i].nombre);
+            for(let f = 0; f < horarios.length; f++){
+                let parrafo = document.createElement("p");
+                parrafo.textContent = "Codigo del estudiante: " + horarios[f].codigo_est + " Día: " + horarios[f].dia + " Hora inicio: " + horarios[f].horaInicio + " Hora fin: " + horarios[f].horaFin;
+                contenedor.appendChild(parrafo);
+            }
         }
     }
-
-
+    espacio.appendChild(contenedor);
 }
